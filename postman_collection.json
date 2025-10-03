@@ -1,0 +1,243 @@
+{
+  "info": {
+    "name": "Django Vue LLM Mini API",
+    "description": "Article Management REST API with JWT Authentication",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login (Get JWT Token)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/auth/token/",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "auth", "token", ""]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"refresh\": \"{{refresh_token}}\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/auth/token/refresh/",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "auth", "token", "refresh", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Articles",
+      "item": [
+        {
+          "name": "List Articles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/articles/",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "articles", ""],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "django",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "published",
+                  "disabled": true
+                },
+                {
+                  "key": "ordering",
+                  "value": "-created_at",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Article",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"My New Django Article\",\n    \"content\": \"This is a comprehensive guide to building REST APIs with Django REST Framework. It covers authentication, pagination, filtering, and much more...\",\n    \"status\": \"published\",\n    \"tags\": \"django,python,api,rest\",\n    \"featured\": false\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/articles/",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "articles", ""]
+            }
+          }
+        },
+        {
+          "name": "Get Article",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/articles/1/",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "articles", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Update Article",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated Article Title\",\n    \"featured\": true\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/articles/1/",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "articles", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Featured Articles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/articles/featured/",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "articles", "featured", ""]
+            }
+          }
+        },
+        {
+          "name": "My Articles",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/articles/my_articles/",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "articles", "my_articles", ""]
+            }
+          }
+        },
+        {
+          "name": "Articles by Author",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/articles/by_author/?author=admin",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "articles", "by_author", ""],
+              "query": [
+                {
+                  "key": "author",
+                  "value": "admin"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Articles by Tag",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/articles/by_tag/?tag=django",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "articles", "by_tag", ""],
+              "query": [
+                {
+                  "key": "tag",
+                  "value": "django"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Article Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/articles/stats/",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "articles", "stats", ""]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "access_token",
+      "value": ""
+    },
+    {
+      "key": "refresh_token",
+      "value": ""
+    }
+  ]
+}
