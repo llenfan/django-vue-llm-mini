@@ -1,8 +1,18 @@
-# Django Vue LLM Mini - Article Management API
+# Django Vue LLM Mini - Full Stack Article Management
 
-A comprehensive REST API for article management with CRUD operations, search, filtering, pagination, and JWT authentication built with Django 5 and Django REST Framework 3.15.
+A complete full-stack application for article management featuring:
+- **Backend**: Django 5 REST API with JWT authentication, search, filtering, and pagination
+- **Frontend**: Vue 3 + Vite + Pinia modern SPA with responsive design
+
+## 🎯 Live Demo
+
+- **Frontend Application**: http://189.90.231.233:3000
+- **Backend API**: http://189.90.231.233:8000/api/articles/
+- **API Documentation**: http://189.90.231.233:8000/api/docs/
 
 ## 🚀 Quick Start
+
+### Backend Setup (Django)
 
 ```bash
 # Clone the repository
@@ -27,6 +37,47 @@ python manage.py createsuperuser
 # Start development server
 python manage.py runserver
 ```
+
+### Frontend Setup (Vue 3)
+
+```bash
+# Navigate to frontend directory
+cd frontend
+
+# Install Node.js dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+The frontend will be available at `http://localhost:3000` and will connect to the Django API.
+
+## 🎨 Frontend Features
+
+### Vue 3 Application Stack
+- **Vue 3** with Composition API
+- **Vite** for fast development and build
+- **Pinia** for state management
+- **Axios** for HTTP requests
+
+### User Interface Features
+- **📱 Responsive Design**: Mobile-first approach with grid layouts
+- **🔍 Real-time Search**: Search articles by title, content, or tags
+- **🏷️ Smart Filtering**: Filter by status (published/draft), sort by date/title
+- **📄 Pagination**: Navigate through article collections
+- **🏷️ Tag Filtering**: Click tags to filter articles
+- **⭐ Featured Articles**: Special highlighting for featured content
+- **⏱️ Loading States**: Skeleton loading and spinners
+- **❌ Error Handling**: User-friendly error messages with retry options
+- **📊 Article Metadata**: Display author, dates, reading time, view counts
+
+### Architecture Highlights
+- **Composition API**: Modern Vue 3 patterns throughout
+- **Pinia Store**: Centralized state management with actions/getters
+- **Service Layer**: Organized API communication with interceptors
+- **JWT Ready**: Token handling and authentication flow
+- **CORS Configured**: Cross-origin requests properly handled
 
 ## 📚 API Documentation
 
